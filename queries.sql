@@ -21,7 +21,7 @@ SELECT species, AVG(escape_attempts) AS AVG_escape_attempts FROM animals WHERE
 SELECT name, full_name FROM animals JOIN owners ON owner_id = owners.id AND owners.id = 4;
 
 -- List of all animals that are pokemon (their type is Pokemon).
-SELECT animals.name FROM animals JOIN species ON species_id = species.id AND species.id = 1;
+SELECT species.name, animals.name FROM animals JOIN species ON species_id = species.id AND species.id = 1;
 
 -- List all owners and their animals, remember to include those that don't own any animal.
 SELECT owners.id, full_name, name FROM animals RIGHT JOIN owners ON owner_id = owners.id;
