@@ -8,5 +8,27 @@ CREATE TABLE animals (
     neutered boolean,
     weight_kg dec,
     primary key(id),
-    species char(45)
+    CONSTRAINT fk_animals_species_id 
+        FOREIGN KEY (species_id) 
+            REFERENCES species(id);
+    CONSTRAINT fk_animals_owner_id
+        FOREIGN KEY (owner_id)
+            REFERENCES owners(id);
 );
+
+ALTER TABLE animals ADD species VARCHAR(255);
+
+CREATE TABLE owners (
+    id INT SERIAL PRIMARY KEY,
+    full_name VARCHAR(255),
+    age INT
+)
+
+CREATE TABLE species (
+    id INT SERIAL PRIMARY KEY,
+    name VARCHAR(255)
+)
+
+ALTER TABLE animals DROP species;
+ALTER TABLE animals ADD species_id INT;
+ALTER TABLE animals ADD owber_id INT;
