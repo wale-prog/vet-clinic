@@ -22,13 +22,33 @@ CREATE TABLE owners (
     id INT SERIAL PRIMARY KEY,
     full_name VARCHAR(255),
     age INT
-)
+);
 
 CREATE TABLE species (
-    id INT SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(255)
-)
+);
 
 ALTER TABLE animals DROP species;
 ALTER TABLE animals ADD species_id INT;
-ALTER TABLE animals ADD owber_id INT;
+ALTER TABLE animals ADD owner_id INT;
+
+CREATE TABLE vets(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    age INT,
+    date_of_graduation date
+);
+
+CREATE TABLE specializations(
+    id SERIAL PRIMARY KEY,
+    species_id INT REFERENCES species(id) ON DELETE CASCADE,
+    vet_id INT REFERENCES vets(id) ON DELETE CASCADE
+);
+
+CREATE TABLE visits(
+    id SERIAL PRIMARY KEY,
+    animal_id INT REFERENCES animals(id) ON DELETE CASCADE,
+    vet_id INT REFERENCES vets(id) ON DELETE CASCADE,
+    date_of_visit DATE
+);
