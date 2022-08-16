@@ -97,15 +97,6 @@ SELECT species.name, COUNT(*) FROM animals
     JOIN species ON species.id = animals.species_id
     WHERE vets.id = 2 GROUP BY species.name ORDER BY count DESC;
 
-
-
-
-
-
-
 EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 6;
 EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
 EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
-
-CREATE INDEX idx_serial_id ON visits(animal_id, vet_id, email);
-ANALYZE;
